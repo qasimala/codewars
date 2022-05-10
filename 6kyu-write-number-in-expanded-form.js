@@ -36,3 +36,36 @@ function expandedForm(num) {
     //we are filtering so that we dont get '70000 + 0 + 300'
     return arrOfNums.filter(x => x !== "0").join(" + ");
   }
+
+
+  //Best methods from answers: 
+  const expandedForm = n => n.toString()
+                            .split("")
+                            .reverse()
+                            .map( (a, i) => a * Math.pow(10, i))
+                            .filter(a => a > 0)
+                            .reverse()
+                            .join(" + ");
+// This method uses map() and raises each item to the power of 10 from its index. It then filters out the zeros.
+
+
+function expandedForm(num) {
+    return String(num)
+            .split("")
+            .map((num, index, arr) => num + "0".repeat(arr.length - index -1 ))
+            .filter((num) => Number(num) != 0)
+            .join(" + ")
+  }
+// This method uses "0",repeat() and repeats the zeros equal to the length of the array minus current index -1. The -1 in the end
+// is because index starts at 0 and length starts at 1
+
+function expandedForm(num) {
+    num = String(num);
+    let result = [];
+    for (var i = 0; i < num.length; i++) {
+      if (num[i] == 0) continue;
+      else result.push(num[i] + "0".repeat(num.length -i -1))
+    }
+    return result.join(" + ")
+  }
+  //Added this one just to show the "continue" keyword in a for loop that will go to next iteration
